@@ -65,10 +65,10 @@ while machine_on:
         chosen_drink = MENU[drink_choice]['cost']
         #AI suggest to avoid running resource_check twice so I do this
         stock_resources = resource_check(drink)
-        if stock_resources is True:
+        if stock_resources:
             money_input = process_coin()
             transact = transaction(chosen_drink, money_input)
-            if transact is True:
+            if transact:
                 coffee_make = coffee_machine(drink_choice, drink)
                 print(coffee_make)
         else:
