@@ -1,8 +1,16 @@
 from turtle import Turtle
+MOVE_DISTANCE = 20
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
+
 class Snake:
+
     def __init__(self):
         self.segments = []
         self.snake_body()
+        self.head = self.segments[0]
 
     def snake_body(self):
         for i in range(3):
@@ -31,4 +39,20 @@ class Snake:
             self.segments[snake_num].goto(coordinate_x, coordinate_y)
             # iteration 2, find the head position and move it there
         # Move the head forward
-        self.segments[0].forward(20)
+        self.head.forward(MOVE_DISTANCE)
+
+    def move_up(self):
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
+
+    def move_down(self):
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+
+    def move_left(self):
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
+
+    def move_right(self):
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
