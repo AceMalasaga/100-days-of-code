@@ -7,13 +7,15 @@ class Account:
         self.account_balance = account_balance
         self.account_transaction = [f"Account opened with initial balance: ${account_balance:.2f}"]
 
+    def __str__(self):
+        return f"Account[{self.account_number}]: {self.account_pin} | Name: {self.account_name}, | Balance: ${self.account_balance:.2f}"
+
     def deposit(self, amount) -> bool:
         if amount <= 0:
             print("You cannot deposit negative amounts")
             return False
         self.account_balance += amount
         self.account_transaction.append(f"Deposited: {amount}")
-        self.account_transaction.append(f"Current balance: {self.account_balance:.2f}")
         return True
 
     def withdraw(self, amount) -> bool:
@@ -23,7 +25,6 @@ class Account:
         if self.account_balance >= amount:
             self.account_balance -= amount
             self.account_transaction.append(f"Withdrawn: {amount}")
-            self.account_transaction.append(f"Current balance: {self.account_balance:.2f}")
             return True
         else:
             print("Not enough money")
@@ -34,9 +35,9 @@ class Account:
         print("=======Bank Statement========")
         for transaction in self.account_transaction:
             print(f"Transaction: {transaction}")
+        print(f"\n\nCurrent balance: {self.account_balance:.2f}")
 
-
-account = Account("1002", "5678", "Ace Malasaga", 1000)
-account.deposit(100)
-account.withdraw(1600)
-account.bank_statement()
+# account = Account("1002", "5678", "Ace Malasaga", 1000)
+# account.deposit(100)
+# account.withdraw(1600)
+# account.bank_statement()
