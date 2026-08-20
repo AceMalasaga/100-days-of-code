@@ -50,25 +50,10 @@ class Cart:
             total += cost
         return total
 
-    #this is my code
     def view_total(self):
         total = self.get_total()
         for product, qty in self.items.items():
             print(f"{product}: \nQuantity: {qty}\nGrand Total: {total}")
-
-    #AI
-    # def view_cart(self):
-    #     if not self.items:
-    #         print("Your cart is currently empty.")
-    #         return
-    #
-    #     print("\n=== YOUR CART ===")
-    #     for product, qty in self.items.items():
-    #         line_total = product.price * qty
-    #         print(f"[{product.product_id}] {product.name} x{qty} @ ₱{product.price:,.2f} = ₱{line_total:,.2f}")
-    #
-    #     print("---------------------------")
-    #     print(f"Grand Total: ₱{self.get_total():,.2f}\n")
 
 
 # cart = Cart()
