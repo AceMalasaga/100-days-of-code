@@ -20,4 +20,5 @@ while is_library:
         author = input("Enter Author: ").lower().strip()
         library.add_book(id_book, title, author)
     else:
+        print("Thank you for using the Library Management System. Goodbye!")
         is_library = False

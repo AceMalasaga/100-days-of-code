@@ -19,6 +19,8 @@ class Book:
             print("--------------------------------------------------------------")
 
     def borrow_book(self):
+        """Marks the book as borrowed if it is currently available."""
+        #check if the self.is_borrowed is false, if False set the self.is_borrowed True
         if not self.is_borrowed:
             self.is_borrowed = True
             print(f"You have borrowed '{self.title}'.")
@@ -28,6 +30,7 @@ class Book:
             return False
 
     def return_book(self, book_id):
+        """Marks the book as returned if it was previously borrowed."""
         if self.is_borrowed:
             print(f"'{self.title}' has been returned to the library.")
             self.is_borrowed = False
