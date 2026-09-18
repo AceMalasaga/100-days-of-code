@@ -1,11 +1,11 @@
 class Member:
 
-    def __init__(self, member_id, name, plan, session):
+    def __init__(self, member_id, name, plan, session, status):
         self.member_id = member_id
         self.name = name
         self.plan = plan
         self.session = session
-        self.status = True
+        self.status = status if self.session > 0 else False
 
     def member_info(self):
         if self.status:
@@ -17,6 +17,8 @@ class Member:
     def check_in_session(self):
         if self.session > 0:
             self.session -= 1
+            if self.session == 0:
+                self.status = False
             print(f"{self.name} checked into class! Session remaining: {self.session}")
             return True
         else:

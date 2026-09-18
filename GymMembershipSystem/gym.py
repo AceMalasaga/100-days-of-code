@@ -13,12 +13,12 @@ class Gym:
             for member in self.member.values():
                 member.member_info()
 
-    def add_member(self, member_id, member_name, member_plan, member_session):
+    def add_member(self, member_id, member_name, member_plan, member_session, member_status=True):
         if member_id in self.member:
             print(f"Member ID '{member_id}' already exists in the system.")
             return False
         else:
-            self.member[member_id] = Member(member_id, member_name, member_plan, member_session)
+            self.member[member_id] = Member(member_id, member_name, member_plan, member_session, member_status)
             return True
 
     def check_membership(self, member_id):
