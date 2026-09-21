@@ -24,6 +24,10 @@ class Company:
             print(f"Employee ID '{emp_id}' does not exist in the system.")
 
     def process_payroll(self):
+        if not self.employees:
+            print("No employees in system to process payroll.")
+            return
+
         total_company_payout = 0.0
         for emp in self.employees.values():
             employee_payout = emp.calculate_payroll()
