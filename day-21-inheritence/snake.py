@@ -1,4 +1,6 @@
 from turtle import Turtle
+#Create a global variable and list the position of head, body, and tail
+STARTING_POSITION = [(0,0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
@@ -13,12 +15,10 @@ class Snake:
         self.head = self.segments[0]
 
     def snake_body(self):
-        for i in range(3):
-            snakes = Turtle(shape="square")
-            snakes.color("white")
-            snakes.penup()
-            snakes.goto(x=0 + (i * -20), y=0)
-            self.segments.append(snakes)
+        """Create segments snake which based on STARTING POSITION which is head, body, and tail then append the object to segments list"""
+        for pstn in STARTING_POSITION:
+            #Call the add_segment method to add another segment
+            self.add_segment(pstn)
 
     def move(self):
         # Normally range takes start and stop, but step defines how to count (in this case, backwards by -1)
@@ -41,18 +41,35 @@ class Snake:
         # Move the head forward
         self.head.forward(MOVE_DISTANCE)
 
+    def add_segment(self, position):
+        """Add a segment to the snake body"""
+        snakes = Turtle(shape="square")
+        snakes.color("white")
+        snakes.penup()
+        snakes.goto(position)
+        self.segments.append(snakes)
+
+    def extend(self):
+        """Extend the snake body by adding new segments"""
+        #add another segment position in the last tail of the segment
+        self.add_segment(self.segments[-1].position())
+
     def move_up(self):
+        """Move the snake if the keystroke is up"""
         if self.head.heading() != DOWN:
             self.head.setheading(UP)
 
     def move_down(self):
+        """Move the snake if the keystroke is down"""
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
     def move_left(self):
+        """Move the snake if the keystroke is left"""
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
 
     def move_right(self):
+        """Move the snake if the keystroke is right"""
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)

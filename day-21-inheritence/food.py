@@ -2,7 +2,9 @@ from turtle import Turtle
 from random import randint
 
 class Food(Turtle):
+
     def __init__(self):
+        """Initialize the food class"""
         super().__init__()
         self.shape("circle")
         self.penup()
@@ -12,6 +14,7 @@ class Food(Turtle):
         self.refresh()
 
     def refresh(self):
+        """Randomize the position of the snake using radint and position it by goto"""
         random_x = randint(-280, 280)
         random_y = randint(-280, 280)
         self.goto(random_x, random_y)
