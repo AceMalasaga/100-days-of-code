@@ -3,7 +3,8 @@ from turtle import Screen, Turtle
 from paddle import Paddle
 
 screen = Screen()
-paddle = Paddle()
+r_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
 
 #Screen configuration
 screen.setup(width=800, height=600)
@@ -20,8 +21,13 @@ screen.tracer(0)
 
 screen.listen()
 #Don't add the parenthesis, when using function as parameters/arguements
-screen.onkey(paddle.go_up, "Up")
-screen.onkey(paddle.go_down,"Down")
+#Right paddle use Up and Down keys
+screen.onkey(r_paddle.go_up, "Up")
+screen.onkey(r_paddle.go_down,"Down")
+
+#Left paddle use w and s keys
+screen.onkey(l_paddle.go_up, "w")
+screen.onkey(l_paddle.go_down,"s")
 
 game_is_on = True
 while game_is_on:
