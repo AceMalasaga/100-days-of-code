@@ -1,6 +1,6 @@
 from turtle import Turtle
 
-#Make it a global, since this is constant
+#I make it a global, since this is constant
 X_MOVE = 10
 
 class Ball(Turtle):

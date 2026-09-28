@@ -14,13 +14,6 @@ screen.bgcolor("black")
 screen.title("Pong")
 screen.tracer(0)
 
-#Paddle config
-# paddle.shape("square")
-# paddle.color("white")
-# paddle.penup()
-# paddle.shapesize(stretch_wid=5, stretch_len=1)
-# paddle.goto(350, 0)
-
 screen.listen()
 #Don't add the parenthesis, when using function as parameters/arguements
 #Right paddle use Up and Down keys
