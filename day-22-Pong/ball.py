@@ -9,6 +9,7 @@ class Ball(Turtle):
         self.x_move = 10
         self.y_move = 10
         self.move()
+        self.move_speed = 0.1
 
     def move(self):
         """Move the ball in the top right corner"""
@@ -23,6 +24,7 @@ class Ball(Turtle):
         """Reset the position of the ball"""
         self.goto(0, 0)
         self.bounce_x()
+        self.move_speed = 0.1
 
     def bounce_y(self):
         """Bounce the ball's y-axis"""
@@ -32,3 +34,4 @@ class Ball(Turtle):
 
     def bounce_x(self):
         self.x_move *= -1
+        self.move_speed *= 0.9
