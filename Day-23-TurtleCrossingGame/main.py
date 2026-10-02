@@ -33,7 +33,7 @@ while game_is_on:
     for car in car_manager.cars:
         #if the turtle is closer below 20 pixel "Game Over"
         if player.distance(car) < 20:
-            player.game_over()
+            scoreboard.game_over()
             game_is_on = False
     #Check the turtle if it's already finish
     if player.is_at_finish_line():

@@ -19,13 +19,12 @@ class Player(Turtle):
         new_y_cor = self.ycor() + MOVE_DISTANCE
         self.goto(self.xcor(), new_y_cor)
 
+        #You can also do this
+        # self.forward(MOVE_DISTANCE)
+
     def is_at_finish_line(self):
         """Check if the car is at a finish line and return to starting position"""
         if self.ycor() > FINISH_LINE_Y:
             self.goto(STARTING_POSITION)
             return True
         return False
-
-    def game_over(self):
-        self.goto(0,0)
-        self.write("Game Over", align="center", font=("Courier", 24, "normal"))
