@@ -19,6 +19,7 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
+print(type(scoreboard.high_score))
 
 #Snake controller, using keystroke
 screen.listen()
