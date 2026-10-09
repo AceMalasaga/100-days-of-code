@@ -1,37 +1,6 @@
 import pandas
 
-# data = pandas.read_csv("weather_data.csv")
-# print(type(data["temp"]))
-# print(type(data))
-
-# data_dict = data.to_dict()
-# print(data_dict)
-
-# temp_list = data["temp"].tolist()
-# temp_avg = sum(temp_list) / len(temp_list)
-# print(temp_avg)
-# print(data["temp"].mean())
-# print(data["temp"].max())
-
-#Get data in column
-# print(data.condition)
-
-#Get Data in Row
-# print(data[data.day == "Monday"])
-
-#Print the row of data which had the highest temperature
-# print(data[data.temp == max(data.temp)])
-
-#Convert Monday's Temperature to Fahrenheit
-# monday = data[data.day == "Monday"]
-# fahrenheit  = (monday.temp[0] * 9/5) + 32
-# print(fahrenheit )
-
-#Create a dataframe from scratch
-data_dict = {
-    "student": ["Ace", "Jennie", "Angela"],
-    "score": [80, 79, 65]
-}
-
-data = pandas.DataFrame(data_dict)
-data.to_csv("new_data.csv")
+data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
+fur_color = data["Primary Fur Color"].replace({"Gray": "grey", "Cinnamon": "red", "Black": "black"})
+squirrel_count = fur_color.value_counts().reset_index().rename(columns={"Primary Fur Color": "Fur Color", "count": "Count"})
+print(squirrel_count)
