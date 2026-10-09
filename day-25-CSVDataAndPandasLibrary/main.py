@@ -7,7 +7,7 @@ squirrel_count = fur_color.value_counts().reset_index().rename(columns={"Primary
 df_squirrel = pandas.DataFrame(squirrel_count)
 df_squirrel.to_csv("squirrel_count.csv")
 
-#This is Angela Code
+#This is Angela Code and mine is at the top
 # data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
 # gray_squirrels = len(data[data["Primary Fur Color"] == "Gray"])
 # red_squirrels = len(data[data["Primary Fur Color"] == "Cinnamon"])
