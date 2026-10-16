@@ -19,7 +19,12 @@ data = pandas.read_csv("50_states.csv")
 all_states = data.state.to_list()
 guessed_states = []
 while score < len(all_states):
-    user_guess = screen.textinput(title=f"{score}/50 State Correct", prompt="What's another state's name?").title()
+    user_guess = screen.textinput(title=f"{score}/50 State Correct", prompt="What's another state's name?")
+
+    if user_guess is None or user_guess.title() == "Exit":
+        break
+
+    user_guess = user_guess.title()
 
     if user_guess in all_states and user_guess not in guessed_states:
         print("You guessed the correct state")
