@@ -18,10 +18,13 @@ while len(guessed_states) < 50:
     answer_state = answer_state.title()
 
     if answer_state == "Exit":
-        not_guessed_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                not_guessed_states.append(state)
+        # not_guessed_states = []
+        # for state in all_states:
+        #     if state not in guessed_states:
+        #         not_guessed_states.append(state)
+
+        #Practice of list comprehension
+        not_guessed_states = [state for state in all_states if state not in guessed_states]
         data = pd.DataFrame(not_guessed_states)
         data.to_csv("state_to_learn.csv")
         break
