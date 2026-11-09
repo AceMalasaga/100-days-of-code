@@ -3,20 +3,20 @@ import random
 import pandas as pd
 
 BACKGROUND_COLOR = "#B1DDC6"
-french_words = pd.read_csv("data/french_words.csv")
-data_list = french_words.to_dict(orient="records")
-try:
-    known_data = pd.read_csv("data/words_to_learn.csv")
-    known_words = known_data.to_dict(orient="records")
-except FileNotFoundError:
-    print("File not found")
-else:
-    for word in known_words:
-        for item in data_list:
-            if word["French"] == item["French"]:
-                data_list.remove(word)
-current_known = []
 current_card = {}
+data_list = {}
+
+try:
+    #If there is not yet words_to_learn
+    french_words = pd.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    #Use the original data
+    original_data = pd.read_csv("data/french_words.csv")
+    #Use the original_data in the data_list
+    data_list = original_data.to_dict(orient="records")
+else:
+    #if the try success set the data_list to words_to_learn
+    data_list = french_words.to_dict(orient="records")
 
 # ---------------------------- NEXT RANDOM WORD SETUP ------------------------------- #
 def next_card():
@@ -24,7 +24,6 @@ def next_card():
 
     window.after_cancel(flip_timer)
     current_card = random.choice(data_list)
-    print(current_card)
     canvas.itemconfig(card_title, text="French", fill="black")
     canvas.itemconfig(card_word, text=current_card['French'], fill="black")
     canvas.itemconfig(old_image, image=card_front_img)
@@ -37,11 +36,15 @@ def flip_card():
     canvas.itemconfig(old_image, image=card_back_img)
 
 # ---------------------------- SAVE PROGRESS SETUP ------------------------------ #
-def save_progress():
+def is_known():
     data_list.remove(current_card)
-    current_known.append(current_card)
-    current_known_french = pd.DataFrame(current_known, columns=["French", "English"])
-    current_known_french.to_csv("data/words_to_learn.csv", index=False)
+    #My code
+    # current_known.append(current_card)
+    # current_known_french = pd.DataFrame(current_known, columns=["French", "English"])
+    # current_known_french.to_csv("data/words_to_learn.csv", index=False)
+    #Angela Code
+    data = pd.DataFrame(data_list)
+    data.to_csv("data/words_to_learn.csv", index=False)
 
     next_card()
 # ---------------------------- WINDOW SETUP ------------------------------- #
@@ -70,7 +73,7 @@ unknown_button = Button(image=cross_image, highlightthickness=0, command=next_ca
 unknown_button.grid(row=1, column=0)
 
 check_image = PhotoImage(file="images/right.png")
-known_button = Button(image=check_image, highlightthickness=0, command=save_progress)
+known_button = Button(image=check_image, highlightthickness=0, command=is_known)
 known_button.grid(row=1, column=1)
 
 next_card()
