@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from random import randint, choice
+from random import choice
 import smtplib
 ##################### Hard Starting Project ######################
 
@@ -16,24 +16,26 @@ birth_day = now.day
 birth_date = (birth_month, birth_day)
 
 # 2. Check if today matches a birthday in the birthdays.csv
-# HINT 1: Only the month and day matter. 
+# HINT 1: Only the month and day matter.
 # HINT 2: You could create a dictionary from birthdays.csv that looks like this:
 # birthdays_dict = {
 #     (month, day): data_row
 # }
 
 birthdays_dict = {(i['month'], i['day']): i for i in birth_list}
-letters = ["letter_1.txt", "letter_2.txt", "letter_3.txt"]
-rand_letter = choice(letters)
 
-#HINT 3: Then you could compare and see if today's month/day matches one of the keys in birthday_dict like this:
+#HINT 3: Then you could compare and see if today's month/day matches
+# one of the keys in birthday_dict like this:
 # if (today_month, today_day) in birthdays_dict:
 if birth_date in birthdays_dict:
     name = birthdays_dict[birth_date]["name"]
     email = birthdays_dict[birth_date]["email"]
-    with open(f"letter_templates/{rand_letter}", "r+") as file:
+    letters = ["letter_1.txt", "letter_2.txt", "letter_3.txt"]
+    rand_letter = choice(letters)
+    with open(f"letter_templates/{rand_letter}", "r") as file:
         content = file.read()
-        # 3. If step 2 is true, pick a random letter from letter templates and replace the [NAME] with the person's actual name from birthdays.csv
+        # 3. If step 2 is true, pick a random letter from letter templates and replace the [NAME]
+        # with the person's actual name from birthdays.csv
         # HINT: https://www.w3schools.com/python/ref_string_replace.asp
         greetings = content.replace("[NAME]", name)
 
@@ -41,7 +43,8 @@ if birth_date in birthdays_dict:
     password = input("Enter your password: ").strip()
 
     # 4. Send the letter generated in step 3 to that person's email address.
-    # HINT: Gmail(smtp.gmail.com), Yahoo(smtp.mail.yahoo.com), Hotmail(smtp.live.com), Outlook(smtp-mail.outlook.com)
+    # HINT: Gmail(smtp.gmail.com), Yahoo(smtp.mail.yahoo.com), Hotmail(smtp.live.com),
+    # Outlook(smtp-mail.outlook.com)
     with smtplib.SMTP('smtp.gmail.com') as connection:
         connection.starttls()
         connection.login(user=my_email, password=password)
