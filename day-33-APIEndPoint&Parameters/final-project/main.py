@@ -3,8 +3,8 @@ from datetime import datetime
 import smtplib
 import time
 
-MY_LAT = 7.448212 # Your latitude
-MY_LONG = 125.809425 # Your longitude
+MY_LAT = 33.220211 # Your latitude
+MY_LONG = 132.563797 # Your longitude
 
 response = requests.get(url="http://api.open-notify.org/iss-now.json", timeout=10)
 response.raise_for_status()
@@ -44,7 +44,7 @@ while True:
         if hour_time >= sunset or hour_time <= sunrise:
             my_email = input("Enter your email address: ").strip()
             password = input("Enter your password: ").strip()
-            email = "acemalasaga252@gmail.com"
+            email = "placeholder@gmail.com"
             with smtplib.SMTP('smtp.gmail.com') as connection:
                 connection.starttls()
                 connection.login(user=my_email, password=password)
