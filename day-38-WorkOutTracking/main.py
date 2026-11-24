@@ -7,9 +7,9 @@ APP_ID = os.environ.get("WORKOUT_APP_ID")
 USERNAME = os.environ.get("SHEETY_USERNAME")
 SHEETY_ENDPOINT = os.environ.get("SHEETY_ENDPOINT")
 SHEETY_BEARER = os.environ.get("SHEETY_TOKEN")
-SHEETY_HEADER = {
-    "Authorization": f"Basic {SHEETY_BEARER}"
-}
+SHEETY_USERNAME = os.environ.get("SHEETY_USERNAME")
+SHEETY_PASSWORD = os.environ.get("SHEETY_PASSWORD")
+
 WORKOUT_HEADERS = {
     "x-app-id": APP_ID,
     "x-app-key": API_KEY,
@@ -43,5 +43,5 @@ for exercise in response_data:
         }
     }
 
-    sheety_response = requests.post(url=sheety_endpoint, json=sheety_body, headers=SHEETY_HEADER)
+    sheety_response = requests.post(url=sheety_endpoint, json=sheety_body, auth=(SHEETY_USERNAME, SHEETY_PASSWORD))
     print(sheety_response.text)
